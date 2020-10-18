@@ -7,12 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.User;
 import model.UserManager;
-
-
-
-
-
 
 public class MainGUI extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -27,6 +23,9 @@ public class MainGUI extends JFrame{
 		panel.add(button, BorderLayout.SOUTH);
 		add(panel);
 		um.addUser("Axel", "asd");
-		System.out.println(um.getAllUsers());
+		um.addUser("Axel", "asd");
+		um.removeUser("Axel");
+		User test = um.getUser("Axel");
+		System.out.println(test.getAge());
 	}
 }

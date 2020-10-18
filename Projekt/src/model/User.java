@@ -7,7 +7,7 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String userName;
 	private String passWord;
-	private int age = 0;
+	private int age = 12;
 	private String row;
 	private ArrayList<Integer> listID = new ArrayList<>();
 	private ActivityManager am = new ActivityManager();
@@ -42,7 +42,7 @@ public class User implements Serializable{
 	}
 	
 	public int getAge() {
-		return age;
+		return this.age;
 	}
 	
 	public void setAge(int age) {
@@ -50,10 +50,10 @@ public class User implements Serializable{
 	}
 
 	public String getUserName() {
-		return userName;
+		return this.userName;
 	}
 
 	public String getPassWord() {
-		return passWord;
+		return this.passWord;
 	}
 }

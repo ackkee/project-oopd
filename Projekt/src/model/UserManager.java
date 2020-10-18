@@ -18,7 +18,7 @@ public class UserManager {
 	
 	public void removeUser(String userName) {
 		for(User u : list) 
-			if(u.getUserName() == userName) 
+			if(u.getUserName().equalsIgnoreCase(userName)) 
 				list.remove(u);
 	}
 	public void addUser(String userName, String passWord) {
@@ -26,9 +26,13 @@ public class UserManager {
 	}
 	
 	public User getUser(String userName) {
-		for(User u : list) {
-			if(u.getUserName() == userName)
-				return u;
+		try {
+			for(User u : list) {
+				if(u.getUserName().equalsIgnoreCase(userName))
+					return u;
+			} 
+		} catch (NullPointerException e) {
+			System.err.println("There is no user of that name");
 		}
 		return null;
 	}
