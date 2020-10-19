@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -9,7 +8,6 @@ public class User implements Serializable{
 	private String passWord;
 	private int age = 0;
 	private String row;
-	private ArrayList<Integer> listID = new ArrayList<>();
 	private ActivityManager am = new ActivityManager();
 	public User(String row) {
 		this.row = row;
@@ -34,12 +32,12 @@ public class User implements Serializable{
 	}
 	
 	public void addActivity(String file, String name) {
-		listID.add(am.addActivity(file, name));
+		am.addActivity(file, name);
 	}
 	
-	public void removeActivity(String file) {
+	public void removeActivity(String name) {
 		try {
-			listID.remove(am.removeActivity(file));
+			am.removeActivity(name);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.err.println(e.getMessage() + ": File not found.");
 		}
@@ -63,5 +61,10 @@ public class User implements Serializable{
 	
 	public ActivityManager getUserAM() {
 		return this.am;
+	}
+	
+	public void printActivityNames() {
+		for(Activity a : am.getActivities())
+			System.out.println(a.getName());
 	}
 }

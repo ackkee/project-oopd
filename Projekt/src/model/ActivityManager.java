@@ -8,26 +8,22 @@ public class ActivityManager {
 	public ActivityManager() {
 	}
 
-	public int addActivity(String file, String name) {
+	public void addActivity(String file, String name) {
 		list.add(new Activity(file,name, ID));
-		return ID++;
 	}
 	
-	public int removeActivity(String name) {
-		int returnedID = -1;
+	public void removeActivity(String name) {
 		for(Activity a : list) {
 			if(a.getName().equalsIgnoreCase(name)) {
 				list.remove(a);
-				returnedID = a.getID();
 				a = null;
 			}
 		}
-		return returnedID -1;
 	}
 	
-	public Activity getActivity(int id) {
+	public Activity getActivity(String name) {
 		for(Activity a : list) {
-			if(a.getID() == id) {
+			if(a.getName().equalsIgnoreCase(name)) {
 				return a;
 			}
 		}

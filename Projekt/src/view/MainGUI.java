@@ -26,9 +26,13 @@ public class MainGUI extends JFrame{
 		um.addUser("Axel", "asd");
 		User test = um.getUser("Axel");
 		test.addActivity("test.csv", "Test");
-		for(TrackPoint p : test.getUserAM().getActivity(1).getTracks()) {
+
+		test.addActivity("test.csv", "Test2");
+		test.addActivity("test.csv", "Test3");
+		test.addActivity("test.csv", "Test4");
+		for(TrackPoint p : test.getUserAM().getActivity("Test").getTracks()) {
 			System.out.println(p.getHRate());
 		}
-		
+		test.printActivityNames();
 	}
 }

@@ -10,7 +10,7 @@ public class Activity {
 	private int ID;
 	public Activity(String file, String name, int id) {
 		this.file = file;
-		this.setName(name);
+		this.name = name;
 		this.ID = id;
 		this.list = FileReaderDAO.getInstance().getActivity(this.file);
 	}
