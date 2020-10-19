@@ -16,13 +16,13 @@ public class ActivityManager {
 	public int removeActivity(String name) {
 		int returnedID = -1;
 		for(Activity a : list) {
-			if(a.getName() == name) {
+			if(a.getName().equalsIgnoreCase(name)) {
 				list.remove(a);
 				returnedID = a.getID();
 				a = null;
 			}
 		}
-		return returnedID;
+		return returnedID -1;
 	}
 	
 	public Activity getActivity(int id) {

@@ -7,7 +7,7 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String userName;
 	private String passWord;
-	private int age = 12;
+	private int age = 0;
 	private String row;
 	private ArrayList<Integer> listID = new ArrayList<>();
 	private ActivityManager am = new ActivityManager();
@@ -38,7 +38,11 @@ public class User implements Serializable{
 	}
 	
 	public void removeActivity(String file) {
-		listID.remove(am.removeActivity(file));
+		try {
+			listID.remove(am.removeActivity(file));
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.err.println(e.getMessage() + ": File not found.");
+		}
 	}
 	
 	public int getAge() {
@@ -55,5 +59,9 @@ public class User implements Serializable{
 
 	public String getPassWord() {
 		return this.passWord;
+	}
+	
+	public ActivityManager getUserAM() {
+		return this.am;
 	}
 }

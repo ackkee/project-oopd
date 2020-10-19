@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.TrackPoint;
 import model.User;
 import model.UserManager;
 
@@ -23,9 +24,11 @@ public class MainGUI extends JFrame{
 		panel.add(button, BorderLayout.SOUTH);
 		add(panel);
 		um.addUser("Axel", "asd");
-		um.addUser("Axel", "asd");
-		um.removeUser("Axel");
 		User test = um.getUser("Axel");
-		System.out.println(test.getAge());
+		test.addActivity("test.csv", "Test");
+		for(TrackPoint p : test.getUserAM().getActivity(1).getTracks()) {
+			System.out.println(p.getHRate());
+		}
+		
 	}
 }

@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class FileReaderDAO {
 
 	private static FileReaderDAO instance;
-	private List<Object> activityList = new LinkedList<>();
+	private List<TrackPoint> activityList = new LinkedList<>();
 	private List<User> userList = new LinkedList<>();
 	private File userFile = new File("users.txt");
 	
@@ -27,7 +27,7 @@ public class FileReaderDAO {
 		return instance;
 	}
 	
-	public List<Object> getActivity(String file) {
+	public List<TrackPoint> getActivity(String file) {
 		try {
 			activityList.clear();
 			Scanner scanner = new Scanner(new File(file));

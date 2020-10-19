@@ -12,6 +12,7 @@ public class Activity {
 		this.file = file;
 		this.setName(name);
 		this.ID = id;
+		this.list = FileReaderDAO.getInstance().getActivity(this.file);
 	}
 	
 	public double getTotalDist() {
@@ -151,4 +152,7 @@ public class Activity {
 		return ID;
 	}
 
+	public List<TrackPoint> getTracks(){
+		return this.list;
+	}
 }
