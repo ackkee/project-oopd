@@ -1,15 +1,16 @@
 package model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class ActivityManager {
+public class ActivityManager implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private LinkedList<Activity> list = new LinkedList<>();
-	private static int ID = 1;
 	public ActivityManager() {
 	}
 
 	public void addActivity(String file, String name) {
-		list.add(new Activity(file,name, ID));
+		list.add(new Activity(file,name));
 	}
 	
 	public void removeActivity(String name) {

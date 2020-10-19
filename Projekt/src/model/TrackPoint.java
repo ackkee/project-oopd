@@ -1,8 +1,10 @@
 
 package model;
 
+import java.io.Serializable;
 
-public class TrackPoint {
+public class TrackPoint implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String row;
 	private String date;
 	private String time;

@@ -1,13 +1,14 @@
 package model;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class UserManager {
 	private static UserManager instance;
 	private int age = 0;
-	private LinkedList<User> list = new LinkedList<>();
+	private List<User> list = new LinkedList<>();
 	private UserManager() {
-		list = (LinkedList<User>) FileReaderDAO.getInstance().getUsers();
+		list = FileReaderDAO.getInstance().getUsers();
 	}
 	
 	public static UserManager getInstance() {
@@ -18,11 +19,15 @@ public class UserManager {
 	
 	public void removeUser(String userName) {
 		for(User u : list) 
-			if(u.getUserName().equalsIgnoreCase(userName)) 
+			if(u.getUserName().equalsIgnoreCase(userName)) {
 				list.remove(u);
+				storeUsers();
+				break;
+			}
 	}
 	public void addUser(String userName, String passWord) {
 		list.add(new User(userName + ";" + passWord));
+		storeUsers();
 	}
 	
 	public User getUser(String userName) {
@@ -37,7 +42,11 @@ public class UserManager {
 		return null;
 	}
 	
-	public LinkedList<User> getAllUsers(){
+	public void storeUsers() {
+		FileReaderDAO.getInstance().storeUsers(this.list);
+	}
+	
+	public List<User> getAllUsers(){
 		return list;
 	}
 	

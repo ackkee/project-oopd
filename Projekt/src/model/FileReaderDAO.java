@@ -1,9 +1,11 @@
 package model;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +16,7 @@ public class FileReaderDAO {
 	private static FileReaderDAO instance;
 	private List<TrackPoint> activityList = new LinkedList<>();
 	private List<User> userList = new LinkedList<>();
-	private File userFile = new File("users.txt");
+	private File userFile = new File("users.dta");
 	
 		
 	private FileReaderDAO() {
@@ -44,27 +46,26 @@ public class FileReaderDAO {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	public List<User> getUsers(){
 		try {
-			Scanner scanner = new Scanner(userFile);
-			while(scanner.hasNextLine()) {
-				User u = new User(scanner.nextLine());
-				this.userList.add(u);
-			}
-			scanner.close();
-		} catch (FileNotFoundException e) {
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream(userFile));
+			LinkedList<User> test = (LinkedList<User>) input.readObject();
+			userList = test;
+			input.close();
+		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return userList;
 	}
 	
-	public void storeUsers() {
+	public void storeUsers(List<User> list) {
 		try {
-			ObjectOutputStream ois = new ObjectOutputStream(new FileOutputStream(userFile));
-			for(Object u : userList) {
-				ois.writeObject(u);
-			}
-			ois.close();
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(userFile));
+			output.writeObject(list);
+			System.out.println("Writing user");
+			output.flush();
+			output.close();
 		} catch(FileNotFoundException f) {
 			f.getMessage();
 		} catch (IOException e) {
