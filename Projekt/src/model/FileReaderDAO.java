@@ -29,13 +29,17 @@ public class FileReaderDAO {
 		return instance;
 	}
 	
-	public List<TrackPoint> getActivity(String file) {
+	public List<TrackPoint> getActivity(File file) {
 		try {
 			activityList.clear();
-			Scanner scanner = new Scanner(new File(file));
+			Scanner scanner = new Scanner(file);
+			String lineOfText;
 			while(scanner.hasNextLine()) {
-				TrackPoint mp = new TrackPoint(scanner.nextLine());
+				lineOfText = scanner.nextLine();
+				if(lineOfText.startsWith("Date")) {continue;}
+				TrackPoint mp = new TrackPoint(lineOfText);
 				this.activityList.add(mp);
+				
 			}
 			scanner.close();
 			return this.activityList;

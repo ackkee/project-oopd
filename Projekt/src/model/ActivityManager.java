@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.LinkedList;
 
@@ -9,7 +10,7 @@ public class ActivityManager implements Serializable{
 	public ActivityManager() {
 	}
 
-	public void addActivity(String file, String name) {
+	public void addActivity(File file, String name) {
 		list.add(new Activity(file,name));
 	}
 	
@@ -18,6 +19,7 @@ public class ActivityManager implements Serializable{
 			if(a.getName().equalsIgnoreCase(name)) {
 				list.remove(a);
 				a = null;
+				break;
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,8 +9,8 @@ public class Activity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private List<TrackPoint> list = new LinkedList<>();
 	private String name;
-	private String file;
-	public Activity(String file, String name) {
+	private File file;
+	public Activity(File file, String name) {
 		this.file = file;
 		this.name = name;
 		this.list = FileReaderDAO.getInstance().getActivity(this.file);

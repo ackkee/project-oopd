@@ -8,7 +8,7 @@ public class TrackPoint implements Serializable {
 	private String row;
 	private String date;
 	private String time;
-	private int elapsedTime;
+	private double elapsedTime;
 	private double lng;
 	private double lat;
 	private double alt;
@@ -21,7 +21,7 @@ public class TrackPoint implements Serializable {
 		this.row = row;
 		this.date = fixRow();
 		this.time = fixRow();
-		this.elapsedTime = Integer.parseInt(fixRow());
+		this.elapsedTime = Double.parseDouble(fixRow());
 		this.lng = Double.parseDouble(fixRow());
 		this.lat = Double.parseDouble(fixRow());
 		this.alt = Double.parseDouble(fixRow());
@@ -39,7 +39,7 @@ public class TrackPoint implements Serializable {
 		return this.time;
 	}
 	
-	public int getElapsedTime(){
+	public double getElapsedTime(){
 		return this.elapsedTime;
 	}
 	
