@@ -67,7 +67,6 @@ public class FileReaderDAO {
 		try {
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(userFile));
 			output.writeObject(list);
-			System.out.println("Writing user");
 			output.flush();
 			output.close();
 		} catch(FileNotFoundException f) {

@@ -30,9 +30,8 @@ public class Session {
 	public Activity getCurrActivity() {
 		if(!user.getUserAM().getActivities().isEmpty()) {
 			currActivity = user.getUserAM().getActivities().get(0); 
-			System.out.println("i ran!");
 		}else {
-			currActivity = new Activity(new File("test.csv"), "Springa");
+			setCurrActivity(new Activity(new File("test.csv"), "Springa"));
 		}
 		return currActivity;
 	}

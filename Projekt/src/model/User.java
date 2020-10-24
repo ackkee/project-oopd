@@ -1,6 +1,5 @@
 package model;
 
-import java.io.File;
 import java.io.Serializable;
 
 public class User implements Serializable{
@@ -30,20 +29,6 @@ public class User implements Serializable{
 		//För att kunna lagra i double krävs . och inte ,
 		temp = temp.replace(",", ".");
 		return temp;
-	}
-	
-	public void addActivity(File file, String name) {
-		am.addActivity(file, name);
-		UserManager.getInstance().storeUsers();
-	}
-	
-	public void removeActivity(String name) {
-		try {
-			am.removeActivity(name);
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.err.println(e.getMessage() + ": File not found.");
-		}
-		UserManager.getInstance().storeUsers();
 	}
 	
 	public int getAge() {

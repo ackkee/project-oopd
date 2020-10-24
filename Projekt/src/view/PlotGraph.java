@@ -9,7 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import controller.Session;
-import model.Activity;
 import model.DataFetcher;
 import model.TrackPoint;
 
@@ -26,9 +25,9 @@ public class PlotGraph extends JPanel {
 	private int[] yPixel;
 	private LinkedList<TrackPoint> trackPointList;
 
-	public PlotGraph(String title,Activity a,DataFetcher fetcher){
+	public PlotGraph(String title,DataFetcher fetcher){
 		this.data = fetcher;
-		this.trackPointList = (LinkedList<TrackPoint>)Session.getInstance().getCurrActivity().getTracks();;
+		this.trackPointList = (LinkedList<TrackPoint>) Session.getInstance().getCurrActivity().getTracks();
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createTitledBorder(title));
 	}
@@ -82,5 +81,4 @@ public class PlotGraph extends JPanel {
 		g.setColor(Color.BLUE);
 		g.drawPolyline(xPixel, yPixel, width);
 	}
-
 }

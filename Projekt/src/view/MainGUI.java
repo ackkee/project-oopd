@@ -36,9 +36,9 @@ public class MainGUI extends JFrame{
 		changeName.setBackground(Color.WHITE);
 		test.add(changeName);
 		panel.add(test,BorderLayout.NORTH);
-		center.add(new PlotGraph("HR", Session.getInstance().getCurrActivity(), TP -> TP.getHRate()));
-		center.add(new PlotGraph("Alt", Session.getInstance().getCurrActivity(), TP -> TP.getAlt()));
-		center.add(new PlotGraph("Speed", Session.getInstance().getCurrActivity(), TP -> TP.getSpeed()));
+		center.add(new PlotGraph("HR", TP -> TP.getHRate()));
+		center.add(new PlotGraph("Alt", TP -> TP.getAlt()));
+		center.add(new PlotGraph("Speed", TP -> TP.getSpeed()));
 		panel.add(center, BorderLayout.CENTER);
 		panel.add(new BottomBar(), BorderLayout.SOUTH);
 		add(panel);

@@ -5,6 +5,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.Session;
 import model.Activity;
@@ -34,22 +35,28 @@ public class BottomBar extends JPanel {
 	public void importActivity() {
 		try {
 			JFileChooser file = new JFileChooser("C:\\Users\\axell\\git\\project-oopd\\Projekt");
-			file.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+			file.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			file.showOpenDialog(null);
-			Session.getInstance().getUser().getUserAM().addActivity(file.getSelectedFile(),
+			FileNameExtensionFilter filter = new FileNameExtensionFilter(null, "csv");
+			file.setFileFilter(filter);
+			if(file.getSelectedFile().toString().endsWith(".csv")){
+				Session.getInstance().getUser().getUserAM().addActivity(file.getSelectedFile(),
 					file.getSelectedFile().getName());
-			getRootPane().repaint();
-			UserManager.getInstance().storeUsers();
-		} catch (NullPointerException e) {
-			JOptionPane.showMessageDialog(this.getRootPane(), "You didn't select a file.");
-		}
+			} else file.changeToParentDirectory();
+		} catch (NullPointerException e) {}
+		
+		updateList();
 	}
 
 	public void changeActivity() {
-		if(list.getSelectedItem() != null) 
+		if(list.getSelectedItem() != null) {
 			JOptionPane.showMessageDialog(getRootPane(), list);
+			String s = (String) list.getSelectedItem();
+			Session.getInstance().setCurrActivity(Session.getInstance().getUser().getUserAM().getActivity(s));
+		}
 		else 
 			JOptionPane.showMessageDialog(getRootPane(), "Det finns inga aktiviteter.");
+		updateList();
 	}
 	
 	public void removeActivity() {
@@ -59,11 +66,21 @@ public class BottomBar extends JPanel {
 				int sure = JOptionPane.showConfirmDialog(getRootPane(), "Vill du verkligen ta bort " + list.getSelectedItem() + "?", "Ta bort", JOptionPane.YES_NO_OPTION);
 				if(sure == 0) {
 					String s = (String) list.getSelectedItem();
-					Session.getInstance().getUser().removeActivity(s);
+					Session.getInstance().getUser().getUserAM().removeActivity(s);
 					list.removeItem(s);
 				}
 			}
 		} else 
 			JOptionPane.showMessageDialog(getRootPane(), "Det finns inga aktiviteter.");
+		updateList();
 	}
+	
+	public void updateList() {
+		list.removeAllItems();
+		for (Activity a : Session.getInstance().getUser().getUserAM().getActivities()) {
+			list.addItem(a.getName());
+		}
+		getRootPane().repaint();
+		UserManager.getInstance().storeUsers();
+	}	
 }
