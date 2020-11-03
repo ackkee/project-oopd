@@ -10,7 +10,6 @@ public class Session {
 	private User user;
 	private Activity currActivity;
 	private Session() {
-		
 	}
 	
 	public static Session getInstance() {
@@ -21,6 +20,11 @@ public class Session {
 	
 	public void setUser(User u) {
 		this.user = u;
+		if(!(this.user.getUserAM().getActivities().isEmpty())) {
+			this.currActivity = user.getUserAM().getActivities().get(0); 
+		}else {
+			setCurrActivity(new Activity(new File("test.csv"), "Springa"));
+		}
 	}
 	
 	public User getUser() {
@@ -28,11 +32,6 @@ public class Session {
 	}
 	
 	public Activity getCurrActivity() {
-		if(!user.getUserAM().getActivities().isEmpty()) {
-			currActivity = user.getUserAM().getActivities().get(0); 
-		}else {
-			setCurrActivity(new Activity(new File("test.csv"), "Springa"));
-		}
 		return currActivity;
 	}
 	

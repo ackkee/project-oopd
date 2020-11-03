@@ -1,5 +1,6 @@
 package view;
 
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -44,7 +45,6 @@ public class BottomBar extends JPanel {
 					file.getSelectedFile().getName());
 			} else file.changeToParentDirectory();
 		} catch (NullPointerException e) {}
-		
 		updateList();
 	}
 
@@ -57,6 +57,7 @@ public class BottomBar extends JPanel {
 		else 
 			JOptionPane.showMessageDialog(getRootPane(), "Det finns inga aktiviteter.");
 		updateList();
+		MainGUI.update();
 	}
 	
 	public void removeActivity() {
