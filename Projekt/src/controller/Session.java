@@ -1,14 +1,18 @@
 package controller;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Activity;
 import model.User;
+import observer.Observable;
+import observer.Observer;
 
-public class Session {
+public class Session implements Observable{
 	private static Session instance;
 	private User user;
 	private Activity currActivity;
+	private List<Observer> observers = new ArrayList<>();
 	private Session() {
 	}
 	
@@ -20,11 +24,6 @@ public class Session {
 	
 	public void setUser(User u) {
 		this.user = u;
-		if(!(this.user.getUserAM().getActivities().isEmpty())) {
-			this.currActivity = user.getUserAM().getActivities().get(0); 
-		}else {
-			setCurrActivity(new Activity(new File("test.csv"), "Springa"));
-		}
 	}
 	
 	public User getUser() {
@@ -32,10 +31,28 @@ public class Session {
 	}
 	
 	public Activity getCurrActivity() {
-		return currActivity;
+		return this.currActivity;
 	}
 	
 	public void setCurrActivity(Activity a) {
 		this.currActivity = a;
+		notifySubscribers();
 	}
+
+	@Override
+	public void addSubscriber(Observer observer) {
+		observers.add(observer);
+	}
+
+	@Override
+	public void removeSubscriber(Observer observer) {
+		observers.remove(observer);
+	}
+
+	@Override
+	public void notifySubscribers() {
+		for(Observer o : observers)
+			o.update();
+	}
+
 }

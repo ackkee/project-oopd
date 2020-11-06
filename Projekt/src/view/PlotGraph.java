@@ -76,12 +76,11 @@ public class PlotGraph extends JPanel {
 	}
 	
 	public void update() {
-		this.trackPointList = (LinkedList<TrackPoint>) Session.getInstance().getCurrActivity().getTracks();
+		repaint();
 	}
 	
 	@Override
 	public void paintComponent (Graphics g){
-		System.out.println(".");
 		super.paintComponents(g);
 		createArrays();
 		g.setColor(Color.BLUE);

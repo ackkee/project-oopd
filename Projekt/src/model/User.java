@@ -7,6 +7,9 @@ public class User implements Serializable{
 	private String userName;
 	private String passWord;
 	private int age = 0;
+	private double weight = 0.0;
+	private double height = 0.0;
+	private String desc = "Här var det tomt";
 	private String row;
 	private ActivityManager am = new ActivityManager();
 	public User(String row) {
@@ -49,6 +52,30 @@ public class User implements Serializable{
 	
 	public ActivityManager getUserAM() {
 		return this.am;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 	
 	public void printActivityNames() {
