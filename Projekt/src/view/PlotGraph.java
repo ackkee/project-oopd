@@ -12,6 +12,11 @@ import controller.Session;
 import model.DataFetcher;
 import model.TrackPoint;
 
+/*
+ * 
+ * Nästintill all designkod här är lånad av lärarna (Hanna)
+ * 
+ */
 
 public class PlotGraph extends JPanel {
 	private static final long serialVersionUID = 1L;

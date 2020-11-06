@@ -8,6 +8,12 @@ import javax.swing.JPanel;
 import controller.Session;
 import model.TrackPoint;
  
+/*
+ * 
+ * Nästintill all designkod här är lånad av lärarna (Hanna)
+ * 
+ */
+
   
 public class DrawMap extends JPanel {
 	
